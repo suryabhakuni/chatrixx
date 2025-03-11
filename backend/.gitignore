@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+.env.development
+.env.production
+.env.test
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Cache
+.npm
+.eslintcache
+
+# Firebase
+firebase-config.json
+firebase-admin-sdk.json
+*-firebase-adminsdk-*.json
+firebase-debug.log*
+
+# Runtime data
+pids/
+*.pid
+
+# Coverage
+coverage/
+
+# IDE
+.vscode/
+.idea/
+
+# Uploads and temp files
+uploads/
+tmp/
+*.tmp
