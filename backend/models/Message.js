@@ -15,6 +15,14 @@ const messageSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  isEncrypted: {
+    type: Boolean,
+    default: false
+  },
+  encryptionData: {
+    iv: String,
+    tag: String
+  },
   messageType: {
     type: String,
     enum: ['text', 'image', 'file', 'voice', 'deleted'],
@@ -51,6 +59,16 @@ const messageSchema = new mongoose.Schema({
   threadCount: {
     type: Number,
     default: 0
+  },
+  expiresAt: {
+    type: Date
+  },
+  isEdited: {
+    type: Boolean,
+    default: false
+  },
+  editedAt: {
+    type: Date
   }
 }, {
   timestamps: true

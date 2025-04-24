@@ -32,6 +32,45 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
+  },
+  fcmTokens: [{
+    token: {
+      type: String,
+      required: true
+    },
+    device: {
+      type: String
+    },
+    createdAt: {
+      type: Date,
+      default: Date.now
+    }
+  }],
+  notificationSettings: {
+    messages: {
+      type: Boolean,
+      default: true
+    },
+    groupMessages: {
+      type: Boolean,
+      default: true
+    },
+    connectionRequests: {
+      type: Boolean,
+      default: true
+    },
+    messageReactions: {
+      type: Boolean,
+      default: true
+    },
+    muteAll: {
+      type: Boolean,
+      default: false
+    },
+    emailNotifications: {
+      type: Boolean,
+      default: false
+    }
   }
 }, {
   timestamps: true

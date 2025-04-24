@@ -25,6 +25,35 @@ const conversationSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Message'
   },
+  encryptionEnabled: {
+    type: Boolean,
+    default: true
+  },
+  // In a real E2E system, keys would not be stored on the server
+  // This is for demonstration purposes only
+  encryptionKeyHint: {
+    type: String
+  },
+  archivedBy: [{
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    },
+    archivedAt: {
+      type: Date,
+      default: Date.now
+    }
+  }],
+  messageExpiration: {
+    enabled: {
+      type: Boolean,
+      default: false
+    },
+    timeInSeconds: {
+      type: Number,
+      default: 86400 // 24 hours
+    }
+  },
   unreadCounts: [{
     user: {
       type: mongoose.Schema.Types.ObjectId,

@@ -1,11 +1,5 @@
 const admin = require('firebase-admin');
 
-// Initialize Firebase Admin
-const serviceAccount = require('../config/firebase-config.json');
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
 const auth = async (req, res, next) => {
   try {
     const token = req.headers.authorization?.split(' ')[1];

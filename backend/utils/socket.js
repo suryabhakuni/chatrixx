@@ -24,7 +24,7 @@ const initSocket = (io) => {
         socket.on('private_message', async (data) => {
             try {
                 const { conversationId, recipientId, content } = data;
-                
+
                 const newMessage = await Message.create({
                     sender: socket.userId,
                     content,
@@ -51,7 +51,7 @@ const initSocket = (io) => {
         socket.on('group_message', async (data) => {
             try {
                 const { conversationId, content } = data;
-                
+
                 const newMessage = await Message.create({
                     sender: socket.userId,
                     content,
@@ -95,7 +95,7 @@ const initSocket = (io) => {
         socket.on('file_message', async (data) => {
             try {
                 const { conversationId, recipientId, fileUrl, fileType } = data;
-                
+
                 const newMessage = await Message.create({
                     sender: socket.userId,
                     conversationId,
@@ -123,9 +123,9 @@ const initSocket = (io) => {
         socket.on('add_reaction', async (data) => {
             try {
                 const { messageId, reaction, conversationId } = data;
-                
+
                 await Message.findByIdAndUpdate(messageId, {
-                    $push: { 
+                    $push: {
                         reactions: {
                             userId: socket.userId,
                             type: reaction
@@ -182,7 +182,7 @@ const initSocket = (io) => {
             if (socket.userId) {
                 connectedUsers.delete(socket.userId);
                 typingUsers.delete(socket.userId);
-                
+
                 await User.findByIdAndUpdate(socket.userId, {
                     isOnline: false,
                     lastSeen: new Date()
@@ -199,7 +199,7 @@ const initSocket = (io) => {
     });
 };
 
-module.exports = { initSocket };
+module.exports = { initSocket, connectedUsers, typingUsers };
 // 1. Real-time message handling
 // 2. Typing indicators
 // 3. Read receipts
